@@ -1,0 +1,12 @@
+#main-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vmin;
+    height: 100vmin;
+    flex: auto;
+    aspect-ratio: 1 / 1;
+}
+
+.grid-box {
+    flex: 1 0 calc(100% / var(--grid-size));
+}
