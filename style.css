@@ -1,10 +1,13 @@
 #main-container {
-    display: flex;
-    flex-wrap: wrap;
     width: 100vmin;
     height: 100vmin;
-    flex: auto;
     aspect-ratio: 1 / 1;
+}
+
+#inner-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: auto;
 }
 
 .grid-box {

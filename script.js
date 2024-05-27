@@ -5,22 +5,25 @@ function makeGrid() {
     do {
         dimension = Number(prompt("How many boxes per side (1-100)?"));
     } while (dimension > 100 || dimension <= 0);
-    const grid = document.getElementById("main-container");
+    const grid = document.createElement("div");
+    grid.setAttribute("id", "inner-container");
     grid.style.setProperty('--grid-size', dimension);
     createGrid(dimension, grid);
 }
 
 function createGrid(dimension, grid) {
-    let x = dimension*dimension;
-    while (x > 0) {
+    let numberOfBoxes = dimension*dimension;
+    while (numberOfBoxes > 0) {
         const newBox = document.createElement("div");
         newBox.classList.add('grid-box');
         newBox.style.backgroundColor = "black";
         newBox.style.opacity = "0";
         newBox.style.aspectRatio = "1 / 1";
         grid.appendChild(newBox);  
-        x--;  
+        numberOfBoxes--;  
     }
+    const container = document.querySelector("#main-container");
+    container.appendChild(grid);
     grid.addEventListener("mouseover", (event) => {
         let target = event.target;
         let currentOpacity = Number(target.style.opacity);
@@ -35,9 +38,8 @@ function createGrid(dimension, grid) {
     });   
     const resetButton = document.querySelector("button");
     resetButton.addEventListener("click", () => {
-        const toDelete = document.querySelectorAll(".grid-box");
-        toDelete.forEach((box) => box.remove());
-        makeGrid();
+        grid.remove();
+        setTimeout(makeGrid, 1000);
     });
         
 }
